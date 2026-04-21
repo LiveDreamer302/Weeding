@@ -23,14 +23,19 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      # peaceiris commits via git; paths in .gitignore are not added — dist/ would be skipped.
-      - name: Stage built files for deploy
+      - name: Force-push dist to gh-pages (ignores parent .gitignore)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          rm -rf site-build
-          cp -r dist site-build
-      - name: Push to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site-build
-          force_orphan: true
+          set -e
+          test -f dist/index.html
+          grep -q './assets/' dist/index.html || (echo "Build did not emit hashed assets in index.html"; exit 1)
+          cd dist
+          git init
+          git checkout -b gh-pages
+          git add -A
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git commit -m "Deploy ${{ github.sha }}"
+          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
+          git push -f origin gh-pages
