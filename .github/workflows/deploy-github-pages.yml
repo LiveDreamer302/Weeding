@@ -23,9 +23,14 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - name: Push dist to gh-pages branch
+      # peaceiris commits via git; paths in .gitignore are not added — dist/ would be skipped.
+      - name: Stage built files for deploy
+        run: |
+          rm -rf site-build
+          cp -r dist site-build
+      - name: Push to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./site-build
           force_orphan: true
