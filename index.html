@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Invitație Online" />
+    <meta name="theme-color" content="#000000" />
+    <title data-bind="pageTitle">Lidia & Constantin</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@700&family=Open+Sans:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top site-nav shadow-sm"
+      aria-label="Navigare principală"
+    >
+      <div class="container-fluid px-3 px-lg-5">
+        <a class="navbar-brand fw-semibold" href="#top" id="nav-brand"></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#nav-collapse"
+          aria-controls="nav-collapse"
+          aria-expanded="false"
+          aria-label="Deschide meniul"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-lg-end text-center" id="nav-collapse">
+          <ul class="navbar-nav ms-lg-auto py-2 py-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#blog">Noi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#geolocal">Unde și Când?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#forms">Confirmare</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Hero (full-bleed bg + mask like reference parallax block) -->
+      <section class="vt-wrap vt-wrap--hero" id="top" aria-label="Titlu invitație">
+        <div class="vt-bg" id="hero-vt-bg" aria-hidden="true">
+          <img
+            class="hero-bg-img"
+            id="hero-vt-img"
+            src=""
+            alt=""
+            decoding="async"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="vt-overlay" id="hero-vt-overlay" aria-hidden="true"></div>
+        <div class="mask" aria-hidden="true"></div>
+        <div class="vt-content">
+          <div class="container text-center hero-inner px-3">
+            <h1 class="hero-names mb-3">
+              <span data-bind="mireasa"></span> &amp; <span data-bind="mire"></span>
+            </h1>
+            <h4 class="hero-date text-white mb-0">
+              <span data-bind="saveTheDateLabel"></span><br />
+              <span data-bind="saveTheDate"></span>
+            </h4>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quote + countdown + music -->
+      <div class="text-center mt-4 pt-4 px-3 intro-block">
+        <blockquote class="intro-quote mb-4" data-bind="introQuote"></blockquote>
+
+        <section class="timer-container reveal" id="timer-wrap" aria-label="Numărătoare inversă">
+          <section class="timer" id="countdown" role="timer" aria-live="polite">
+            <div>
+              <section>
+                <p><span data-count="days">00</span></p>
+                <p><small data-bind="countdownDays">zile</small></p>
+              </section>
+              <span class="timer-sep">:</span>
+              <section>
+                <p><span data-count="hours">00</span></p>
+                <p><small data-bind="countdownHours">ore</small></p>
+              </section>
+              <span class="timer-sep">:</span>
+              <section>
+                <p><span data-count="minutes">00</span></p>
+                <p><small data-bind="countdownMinutes">minute</small></p>
+              </section>
+              <span class="timer-sep">:</span>
+              <section>
+                <p><span data-count="seconds">00</span></p>
+                <p><small data-bind="countdownSeconds">secunde</small></p>
+              </section>
+            </div>
+          </section>
+        </section>
+        <p class="countdown-done hidden my-4" id="countdown-done" data-bind="countdownDoneMessage"></p>
+
+        <span class="d-inline-flex flex-column align-items-center music-wrap">
+          <img
+            class="music animate__animated animate__pulse animate__delay-4s animate__infinite"
+            id="music-icon"
+            src=""
+            alt=""
+            width="70"
+            height="70"
+          />
+          <audio id="bg-audio" controls loop preload="metadata"></audio>
+        </span>
+      </div>
+
+      <!-- Invitation blog -->
+      <section id="blog" class="blog pt-4">
+        <div class="container blog-container px-3">
+          <div class="row main-row align-items-center gx-3 gy-4 reveal">
+            <div class="col-lg-4 col-md-12">
+              <div class="blog-img text-center px-2 px-lg-0">
+                <img class="img-fluid" id="invite-side-img" src="" alt="" />
+              </div>
+            </div>
+            <div class="col-lg-8 col-md-12">
+              <div class="blog-title mt-lg-5 mt-md-3 mt-4 px-2 px-lg-3">
+                <h2 class="text-center p-2" data-bind="inviteTitle"></h2>
+                <h4 class="text-center px-2 invite-body" data-bind="inviteBody"></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery carousel -->
+      <section id="gallery" class="gallery-section mt-5 mb-5 reveal" aria-labelledby="gallery-heading">
+        <div class="container text-center mb-3">
+          <h1 id="gallery-heading" class="mb-0 gallery-title" data-bind="galleryHeading"></h1>
+        </div>
+        <div
+          class="model"
+          id="gallery-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Imagine mărită"
+        >
+          <button type="button" class="model-close btn btn-link text-white" id="lightbox-close" aria-label="Închide">
+            &times;
+          </button>
+          <img id="lightbox-img" src="" alt="" />
+        </div>
+        <div class="container-fluid px-3 px-lg-5 gallery-carousel-outer">
+          <div id="gallery-root"></div>
+        </div>
+      </section>
+
+      <!-- Unde și când -->
+      <section id="geolocal" class="card_local py-lg-5 container reveal" aria-labelledby="venue-title">
+        <h2 id="venue-title" class="text-center mt-5 section-dancing" data-bind="venueSectionTitle"></h2>
+        <div class="row justify-content-center align-items-stretch mt-3 g-3">
+          <div class="col-12 col-lg-4">
+            <div class="card p-0 overflow-hidden h-100 shadow venue-card">
+              <img class="card-img-top" id="venue-card-img" src="" alt="" />
+              <div class="card-body text-center">
+                <h6 class="card-title text-muted text-uppercase small" data-bind="venueEventLabel"></h6>
+                <h3 class="card-title venue-name-dancing">„<span data-bind="venueName"></span>”</h3>
+                <h5 class="card-title" data-bind="venueDateTime"></h5>
+                <p class="card-text" data-bind="venueLocation"></p>
+                <a class="btn btn-primary btn-venue" id="venue-map-btn" href="#" data-bind="venueMapButtonLabel"></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-8">
+            <div class="card p-0 overflow-hidden h-100 shadow">
+              <iframe
+                class="card-img-top h-100 venue-iframe"
+                id="venue-map-iframe"
+                title="Hartă locație"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fun + RSVP intro -->
+      <section class="vt-wrap vt-wrap--fun reveal" aria-labelledby="fun-line">
+        <div class="vt-bg" id="fun-vt-bg" aria-hidden="true"></div>
+        <div class="vt-overlay" id="fun-vt-overlay" aria-hidden="true"></div>
+        <div class="mask" aria-hidden="true"></div>
+        <div class="vt-content">
+          <div class="container text-center fun-inner px-3 py-4">
+            <h1 class="text-white fun-title" id="fun-line" data-bind="funReminder"></h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Form -->
+      <section id="forms" class="form pb-5 reveal" aria-labelledby="rsvp-heading">
+        <h2 id="rsvp-heading" class="text-center mt-5 section-dancing" data-bind="rsvpTitle"></h2>
+        <div class="card text-center container my-4" style="max-width: 55rem">
+          <div class="card-header rsvp-card-header" data-bind="rsvpDeadlineText"></div>
+          <div class="card-body text-start">
+            <form id="rsvp-form" novalidate>
+              <div class="mb-3">
+                <label class="form-label" for="guest-name"><span data-bind="labelFullName"></span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="guest-name"
+                  name="nume_prenume"
+                  required
+                  autocomplete="name"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="guest-phone"><span data-bind="labelPhone"></span></label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="guest-phone"
+                  name="numar_contact"
+                  required
+                  autocomplete="tel"
+                />
+              </div>
+              <hr />
+              <fieldset class="mb-3">
+                <legend class="form-label" data-bind="labelPresence"></legend>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="radio" name="prezenta" id="prez-da" value="da" required />
+                  <label class="form-check-label" for="prez-da" data-bind="presenceYes"></label>
+                </div>
+                <div class="guest-counts hidden p-3 mb-2 rounded border border-secondary border-dashed" id="guest-counts">
+                  <div class="row g-2 align-items-center mb-2">
+                    <div class="col-auto"><label class="col-form-label" for="adults" data-bind="labelAdults"></label></div>
+                    <div class="col-auto">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="adults"
+                        name="adulti"
+                        min="1"
+                        max="50"
+                        value="2"
+                      />
+                    </div>
+                  </div>
+                  <div class="row g-2 align-items-center">
+                    <div class="col-auto"><label class="col-form-label" for="children" data-bind="labelChildren"></label></div>
+                    <div class="col-auto">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="children"
+                        name="copii"
+                        min="0"
+                        max="50"
+                        value="0"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="prezenta" id="prez-nu" value="nu" />
+                  <label class="form-check-label" for="prez-nu" data-bind="presenceNo"></label>
+                </div>
+              </fieldset>
+              <div class="mb-3">
+                <label class="form-label" for="message"><span data-bind="labelMessage"></span></label>
+                <textarea class="form-control" id="message" name="mesaj" rows="4"></textarea>
+              </div>
+              <hr />
+              <p class="form-status small mb-2" id="form-status" role="status" aria-live="polite"></p>
+              <button type="submit" class="btn btn-primary w-100 btn-submit" data-bind="submitLabel"></button>
+            </form>
+          </div>
+          <div class="card-footer text-muted">
+            <span data-bind="footerAnticipation"></span>
+            <br />
+            <span data-bind="mireasa"></span> &amp; <span data-bind="mire"></span>
+            <a class="text-reset ms-1" id="footer-card-phone" href="#" data-bind="footerPhoneDisplay"></a>
+            :
+            <br />
+            <span class="footer-links" id="footer-social"></span>
+          </div>
+        </div>
+
+        <div class="text-center mt-5 mb-4">
+          <h4 data-bind="closingLine"></h4>
+          <h3 class="section-dancing closing-names mt-2">
+            <span data-bind="mireasa"></span> &amp; <span data-bind="mire"></span>
+            <br />
+            <img id="closing-giphy" class="mt-2" src="" alt="" style="width: 100px" />
+          </h3>
+        </div>
+      </section>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

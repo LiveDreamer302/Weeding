@@ -1,0 +1,602 @@
+/* Reference: vasile-carolina.invitatii-web.md — global rules from their main.*.css */
+
+:root {
+  --site-body-pattern: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding-top: 56px;
+  background-image: var(--site-body-pattern);
+  background-repeat: repeat-y;
+  background-size: contain;
+  color: #1e1e1e;
+  font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.05rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Bootstrap navbar-dark + bg-dark: light links on desktop */
+.site-nav {
+  z-index: 1030;
+}
+
+.site-nav .navbar-brand {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.65rem;
+  letter-spacing: 0.02em;
+}
+
+.site-nav .nav-link {
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Mobile expanded menu: white panel + dark links (like reference active bg-white) */
+@media (max-width: 991.98px) {
+  #nav-collapse {
+    margin-top: 0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    border-radius: 0.375rem;
+  }
+
+  #nav-collapse.collapsing,
+  #nav-collapse.show {
+    background-color: #fff !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.12);
+  }
+
+  #nav-collapse .nav-link {
+    color: #212529 !important;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  #nav-collapse .nav-link:hover {
+    color: #0d6efd !important;
+  }
+}
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  line-height: 1.5em;
+  text-shadow: 0.5px 0.5px 1px #070707;
+}
+
+h2.section-dancing,
+h3.section-dancing,
+.closing-names {
+  font-family: 'Dancing Script', cursive;
+  font-size: 30px;
+}
+
+h4,
+h5,
+h6,
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+p {
+  font-style: italic;
+}
+
+.intro-quote {
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.35rem, 3.1vw, 1.85rem);
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: 0.035em;
+  color: #2f2c29;
+  max-width: 38rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  padding: 0 0.75rem;
+  text-wrap: balance;
+  border: none;
+}
+
+.intro-block {
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px 12px;
+}
+
+/* Full-bleed photo blocks: bg fills section; mask covers full area (reference vt) */
+.vt-wrap {
+  position: relative;
+  min-height: var(--vt-height, 600px);
+  overflow: hidden;
+}
+
+.vt-wrap--hero {
+  --vt-height: 600px;
+}
+
+.vt-wrap--fun {
+  --vt-height: 400px;
+}
+
+.vt-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: saturate(2);
+  opacity: var(--vt-img-opacity, 0.5);
+  z-index: 0;
+}
+
+/* Hero photo: <img> + object-fit; object-position controls which part of the image fills the strip. */
+.vt-wrap--hero .hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--hero-object-mobile, center 28%);
+  pointer-events: none;
+}
+
+@media (min-width: 850px) {
+  .vt-wrap--hero .hero-bg-img {
+    object-position: var(--hero-object-desktop, center 30%);
+  }
+}
+
+.vt-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.12);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.vt-wrap > .mask {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.vt-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  min-height: var(--vt-height, 600px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-shadow: 2px 2px 4px black, 0 0 0.2em black, 0 0 0.1em grey;
+}
+
+.hero-inner {
+  max-width: 600px;
+}
+
+/* Reference inner row had marginBottom ~90px below hero text */
+.vt-wrap--hero .vt-content {
+  padding-bottom: 90px;
+  box-sizing: border-box;
+}
+
+.fun-inner {
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-names {
+  font-size: 50px;
+  color: #fff;
+}
+
+.hero-date {
+  font-size: 30px;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  text-shadow: 2px 2px 4px black, 0 0 0.2em black;
+}
+
+.fun-title {
+  font-size: clamp(1.5rem, 4.5vw, 2rem);
+  line-height: 1.45;
+  white-space: pre-line;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 500;
+}
+
+/* Timer — from reference */
+.timer-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.timer > div {
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+  border-radius: 3px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-top: 2em;
+  padding: 2em;
+  text-align: center;
+  align-items: end;
+}
+
+.timer section p:first-of-type,
+.timer .timer-sep {
+  font-size: 3em;
+  margin: 0;
+  line-height: 1;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+}
+
+.timer section p small {
+  font-size: 0.85rem;
+  text-transform: none;
+  font-style: normal;
+}
+
+.timer-sep {
+  padding-bottom: 0.15em;
+  font-weight: 300;
+}
+
+@media screen and (max-width: 480px) {
+  .timer > div {
+    padding: 1.25em;
+  }
+
+  .timer section p:first-of-type,
+  .timer .timer-sep {
+    font-size: 2em;
+  }
+}
+
+.countdown-done {
+  font-size: 1.35rem;
+  font-style: normal;
+}
+
+.music-wrap img.music {
+  width: 70px;
+  height: auto;
+}
+
+.music-wrap audio {
+  max-width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Blog row — frosted card; wide screens offset like reference */
+.blog-container .main-row {
+  background-color: hsla(0, 0%, 100%, 0.858);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 8%;
+  overflow: visible;
+}
+
+.blog-img > img {
+  border-radius: 50%;
+  box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.3);
+  transform: translateY(-30px);
+  width: 250px;
+  max-width: 85%;
+  height: auto;
+  object-fit: cover;
+}
+
+.blog-title > h2 {
+  line-height: 2rem;
+}
+
+@media (min-width: 500px) {
+  .blog-title > h2 {
+    line-height: 3rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .blog-container .main-row {
+    left: 15%;
+    position: relative;
+    max-width: 800px;
+  }
+}
+
+.invite-body {
+  font-style: italic;
+  line-height: 1.65;
+  font-weight: 400;
+  white-space: pre-line;
+}
+
+/* Gallery — carousel (fixed viewport, light surface aligned with page) */
+.gallery-section {
+  /* Taller viewport = less “small print” when using contain; tune if needed */
+  --gallery-slide-height: clamp(300px, 56vmin, 580px);
+  --gallery-surface: #faf7f2;
+  --gallery-surface-edge: rgba(46, 44, 40, 0.06);
+  width: 100%;
+}
+
+.gallery-section > .container.text-center {
+  margin-bottom: 1.5rem;
+}
+
+.gallery-title {
+  color: #4caf50;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+.gallery-carousel-outer {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gallery-carousel {
+  position: relative;
+}
+
+.gallery-carousel-inner {
+  overflow: hidden;
+  height: var(--gallery-slide-height);
+  background: var(--gallery-surface);
+  border: 1px solid var(--gallery-surface-edge);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 8px 32px rgba(46, 44, 40, 0.06);
+}
+
+.gallery-carousel-inner .carousel-item {
+  height: var(--gallery-slide-height);
+}
+
+.gallery-carousel-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: clamp(0.35rem, 1.5vw, 0.75rem);
+  cursor: zoom-in;
+  overflow: hidden;
+  border-radius: inherit;
+  box-sizing: border-box;
+}
+
+.gallery-carousel-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  margin: 0;
+  border-radius: 0;
+  transition: transform 0.4s ease;
+}
+
+.gallery-carousel-frame:hover .gallery-carousel-img {
+  transform: scale(1.015);
+}
+
+.gallery-carousel .carousel-indicators {
+  margin-bottom: 0.65rem;
+}
+
+.gallery-carousel .carousel-indicators [type='button'] {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(46, 44, 40, 0.22);
+  border: none;
+  margin: 0 5px;
+}
+
+.gallery-carousel .carousel-indicators .active {
+  background-color: #4caf50;
+}
+
+.gallery-carousel .carousel-control-prev,
+.gallery-carousel .carousel-control-next {
+  width: 3rem;
+  min-width: 3rem;
+  opacity: 1;
+}
+
+.gallery-carousel .carousel-control-prev-icon,
+.gallery-carousel .carousel-control-next-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  filter: invert(32%) sepia(8%) saturate(800%) hue-rotate(349deg) brightness(95%);
+}
+
+.gallery-carousel .gallery-pic:focus {
+  outline: none;
+}
+
+.gallery-carousel .gallery-pic:focus-visible {
+  outline: 3px solid rgba(76, 175, 80, 0.9);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Lightbox */
+.model {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  transform: scale(0);
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease,
+    transform 0.5s ease-in-out;
+  visibility: hidden;
+  width: 100%;
+  z-index: 2000;
+  padding: 2rem;
+}
+
+.model.open {
+  opacity: 1;
+  transform: scale(1);
+  visibility: visible;
+}
+
+.model img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+  animation: galleryLightboxIn 0.28s ease-out;
+}
+
+@keyframes galleryLightboxIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.model-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2.5rem;
+  line-height: 1;
+  text-decoration: none;
+  z-index: 2001;
+}
+
+/* Venue */
+.section-dancing {
+  font-family: 'Dancing Script', cursive;
+  font-size: 40px;
+}
+
+.venue-name-dancing {
+  font-family: 'Dancing Script', cursive;
+  font-size: 40px;
+}
+
+.venue-iframe {
+  min-height: 400px;
+  border: 0;
+}
+
+.venue-card .card-img-top {
+  width: 100%;
+  object-fit: cover;
+  max-height: 280px;
+}
+
+.venue-card .card-text {
+  font-style: normal;
+}
+
+.btn-primary,
+.btn-venue {
+  background-color: #5e4e11;
+  border-color: #5e4e11;
+  color: #f0f8ff;
+}
+
+.btn-primary:hover,
+.btn-venue:hover {
+  background-color: #ef63b9;
+  border-color: #ef63b9;
+  color: #fff;
+}
+
+.rsvp-card-header {
+  white-space: pre-line;
+  font-style: italic;
+}
+
+.form-status--error {
+  color: #c62828;
+}
+
+.form-status--ok {
+  color: #2e7d32;
+}
+
+.footer-links a {
+  margin: 0 0.35rem;
+  color: inherit;
+}
+
+/* Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .gallery-carousel-frame,
+  .gallery-carousel-img {
+    transition: none;
+  }
+
+  .gallery-carousel-frame:hover .gallery-carousel-img {
+    transform: none;
+  }
+
+  .model img {
+    animation: none;
+  }
+}
