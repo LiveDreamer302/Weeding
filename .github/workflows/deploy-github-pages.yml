@@ -1,3 +1,10 @@
+# Publishes the Vite `dist/` output to branch `gh-pages`.
+#
+# Required GitHub setting (one-time): Settings → Pages → Build and deployment →
+# Source: "Deploy from a branch" → Branch: gh-pages → Folder: / (root).
+# If Source stays on "main", GitHub serves the repo-root index.html (still points
+# at /src/main.js), so JS/CSS bundles 404 and the invite looks empty.
+
 name: Deploy to GitHub Pages
 
 on:
