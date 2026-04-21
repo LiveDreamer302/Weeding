@@ -1,14 +1,12 @@
 import { defineConfig } from 'vite';
 
-/** Set in CI for GitHub project pages (e.g. /Weeding/). Local dev uses '/'. */
-const base = process.env.GITHUB_PAGES_BASE || '/';
-
-export default defineConfig({
+// `serve`: `/`. `build`: `./` so assets work on GitHub Pages project URLs (/repo/).
+export default defineConfig(({ command }) => ({
   root: '.',
   publicDir: 'public',
-  base,
+  base: command === 'serve' ? '/' : './',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
   },
-});
+}));
