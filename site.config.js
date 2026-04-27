@@ -7,8 +7,8 @@ export const assetBase = 'https://vasile-carolina.invitatii-web.md';
 export default {
   pageTitle: 'Lidia & Constantin',
 
-  /** Optional extra tiling image on top of the built-in wedding motif (leave empty to use CSS rings only) */
-  bodyPatternUrl: '',
+  /** Optional extra tiling image on top of the built-in wedding motif */
+  bodyPatternUrl: '/rings-motif.svg',
 
   /** Hero: local file in /public (same image for desktop and mobile) */
   heroImageDesktop: '/hero-main.png',

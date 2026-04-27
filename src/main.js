@@ -36,7 +36,7 @@ function applyVisualConfig() {
   if (siteConfig.bodyPatternUrl) {
     root.style.setProperty(
       '--site-body-pattern',
-      `url('${siteConfig.bodyPatternUrl}')`,
+      `url('${publicAssetUrl(siteConfig.bodyPatternUrl)}')`,
     );
   }
 
