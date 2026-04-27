@@ -2,7 +2,8 @@
 
 :root {
   --site-body-pattern: none;
-  --site-body-motif: none;
+  /* Subtle wedding motif (rings): embedded so GitHub Pages never has to fetch a separate file. */
+  --site-body-motif: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='112' viewBox='0 0 112 112'%3E%3Cg fill='none' stroke='%237a6b52' stroke-width='0.45' opacity='0.09'%3E%3Ccircle cx='46' cy='56' r='15'/%3E%3Ccircle cx='66' cy='56' r='15'/%3E%3C/g%3E%3Cpath d='M56 22c-3.2-5-10-5-10 1.8 0 4.2 3.2 6.8 10 12 6.8-5.6 10-8.6 10-12 0-6.8-6.8-6.8-10-1.8z' fill='%237a6b52' opacity='0.05'/%3E%3C/svg%3E");
   /* Near-white linen base — less saturated than before */
   --site-body-base: linear-gradient(180deg, #faf9f7 0%, #f5f3ef 48%, #fafaf8 100%);
   --site-body-glow-top: radial-gradient(1100px 480px at 50% -100px, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
