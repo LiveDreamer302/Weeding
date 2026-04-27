@@ -21,6 +21,16 @@ function bindText() {
   });
 }
 
+function applyHeroLayout() {
+  const heroWrap = document.querySelector('#top.vt-wrap');
+  if (!heroWrap || !siteConfig.heroHeight) return;
+  const desktopWide =
+    typeof window.matchMedia === 'function' && window.matchMedia('(min-width: 850px)').matches;
+  const height =
+    desktopWide && siteConfig.heroHeightDesktop ? siteConfig.heroHeightDesktop : siteConfig.heroHeight;
+  heroWrap.style.setProperty('--vt-height', height);
+}
+
 function applyVisualConfig() {
   const root = document.documentElement;
   if (siteConfig.bodyPatternUrl) {
@@ -36,9 +46,7 @@ function applyVisualConfig() {
   }
 
   const heroWrap = document.querySelector('#top.vt-wrap');
-  if (heroWrap && siteConfig.heroHeight) {
-    heroWrap.style.setProperty('--vt-height', siteConfig.heroHeight);
-  }
+  applyHeroLayout();
   if (heroWrap && siteConfig.heroImageOpacity != null) {
     heroWrap.style.setProperty('--vt-img-opacity', String(siteConfig.heroImageOpacity));
   }
@@ -77,23 +85,6 @@ function applyVisualConfig() {
     inviteImg.alt = 'Invitație';
   }
 
-  const musicIcon = document.getElementById('music-icon');
-  if (musicIcon && siteConfig.musicIconUrl) {
-    musicIcon.src = siteConfig.musicIconUrl;
-    musicIcon.alt = '';
-  }
-
-  const audio = document.getElementById('bg-audio');
-  if (audio && siteConfig.audioUrl) {
-    audio.src = siteConfig.audioUrl;
-  }
-
-  const giphy = document.getElementById('closing-giphy');
-  if (giphy && siteConfig.giphyUrl) {
-    giphy.src = siteConfig.giphyUrl;
-    giphy.alt = '';
-  }
-
   updateVtBackgrounds();
 }
 
@@ -118,140 +109,6 @@ function updateVtBackgrounds() {
     venueCardImg.src = publicAssetUrl(siteConfig.venueCardImageUrl);
     venueCardImg.alt = siteConfig.venueName || 'Locație';
   }
-}
-
-function renderGallery() {
-  const root = document.getElementById('gallery-root');
-  if (!root || !Array.isArray(siteConfig.galleryImages)) return;
-  const images = siteConfig.galleryImages;
-  if (images.length === 0) return;
-
-  root.className = 'gallery-carousel carousel slide';
-  root.setAttribute('data-bs-ride', 'false');
-  root.innerHTML = '';
-
-  const targetId = '#gallery-root';
-
-  const indicators = document.createElement('div');
-  indicators.className = 'carousel-indicators';
-  images.forEach((item, index) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.setAttribute('data-bs-target', targetId);
-    btn.setAttribute('data-bs-slide-to', String(index));
-    btn.setAttribute('aria-label', `Imaginea ${index + 1} din ${images.length}`);
-    if (index === 0) {
-      btn.classList.add('active');
-      btn.setAttribute('aria-current', 'true');
-    }
-    indicators.appendChild(btn);
-  });
-
-  const inner = document.createElement('div');
-  inner.className = 'carousel-inner gallery-carousel-inner rounded shadow';
-
-  images.forEach((item, index) => {
-    const itemEl = document.createElement('div');
-    itemEl.className = `carousel-item${index === 0 ? ' active' : ''}`;
-
-    const frame = document.createElement('div');
-    frame.className = 'gallery-carousel-frame gallery-pic';
-    frame.dataset.index = String(index);
-    frame.setAttribute('role', 'button');
-    frame.setAttribute('tabindex', '0');
-    frame.setAttribute(
-      'aria-label',
-      item.alt ? `Mărește: ${item.alt}` : 'Deschide imaginea în vizualizare mare',
-    );
-
-    const img = document.createElement('img');
-    img.src = publicAssetUrl(item.src);
-    img.alt = item.alt || '';
-    img.className = 'gallery-carousel-img';
-    img.loading = index === 0 ? 'eager' : 'lazy';
-    img.decoding = 'async';
-
-    frame.appendChild(img);
-    itemEl.appendChild(frame);
-    inner.appendChild(itemEl);
-  });
-
-  const prevBtn = document.createElement('button');
-  prevBtn.type = 'button';
-  prevBtn.className = 'carousel-control-prev';
-  prevBtn.setAttribute('data-bs-target', targetId);
-  prevBtn.setAttribute('data-bs-slide', 'prev');
-  prevBtn.innerHTML =
-    '<span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Înapoi</span>';
-
-  const nextBtn = document.createElement('button');
-  nextBtn.type = 'button';
-  nextBtn.className = 'carousel-control-next';
-  nextBtn.setAttribute('data-bs-target', targetId);
-  nextBtn.setAttribute('data-bs-slide', 'next');
-  nextBtn.innerHTML =
-    '<span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Înainte</span>';
-
-  root.appendChild(indicators);
-  root.appendChild(inner);
-  root.appendChild(prevBtn);
-  root.appendChild(nextBtn);
-
-  const BS = typeof window !== 'undefined' ? window.bootstrap : undefined;
-  if (BS?.Carousel) {
-    const existing = BS.Carousel.getInstance(root);
-    if (existing) existing.dispose();
-    new BS.Carousel(root, { interval: false, wrap: true, touch: true, keyboard: true });
-  }
-}
-
-function setupGalleryLightbox() {
-  const root = document.getElementById('gallery-root');
-  const modal = document.getElementById('gallery-lightbox');
-  const modalImg = document.getElementById('lightbox-img');
-  const closeBtn = document.getElementById('lightbox-close');
-  if (!root || !modal || !modalImg) return;
-
-  function open(src) {
-    modalImg.src = src;
-    modalImg.decoding = 'async';
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function close() {
-    modal.classList.remove('open');
-    modalImg.src = '';
-    document.body.style.overflow = '';
-  }
-
-  function openFromPic(pic) {
-    const img = pic.querySelector('img');
-    if (img?.src) open(img.src);
-  }
-
-  root.addEventListener('click', (e) => {
-    const pic = e.target.closest('.gallery-pic');
-    if (!pic) return;
-    openFromPic(pic);
-  });
-
-  root.addEventListener('keydown', (e) => {
-    const pic = e.target.closest('.gallery-pic');
-    if (!pic) return;
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      openFromPic(pic);
-    }
-  });
-
-  closeBtn?.addEventListener('click', close);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) close();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) close();
-  });
 }
 
 function setupFooter() {
@@ -508,8 +365,6 @@ function setupMobileNavClose() {
 function init() {
   bindText();
   applyVisualConfig();
-  renderGallery();
-  setupGalleryLightbox();
   setupFooter();
   setupMobileNavClose();
   updateCountdown();
@@ -518,6 +373,7 @@ function init() {
   setupReveal();
 
   window.addEventListener('resize', () => {
+    applyHeroLayout();
     updateVtBackgrounds();
   });
 

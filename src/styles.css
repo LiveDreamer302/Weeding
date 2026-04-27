@@ -2,6 +2,13 @@
 
 :root {
   --site-body-pattern: none;
+  /* Subtle wedding motif (rings): low-contrast, matches #5e4e11 / linen page */
+  --site-body-motif: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='112' viewBox='0 0 112 112'%3E%3Cg fill='none' stroke='%237a6b52' stroke-width='0.45' opacity='0.09'%3E%3Ccircle cx='46' cy='56' r='15'/%3E%3Ccircle cx='66' cy='56' r='15'/%3E%3C/g%3E%3Cpath d='M56 22c-3.2-5-10-5-10 1.8 0 4.2 3.2 6.8 10 12 6.8-5.6 10-8.6 10-12 0-6.8-6.8-6.8-10-1.8z' fill='%237a6b52' opacity='0.05'/%3E%3C/svg%3E");
+  /* Near-white linen base — less saturated than before */
+  --site-body-base: linear-gradient(180deg, #faf9f7 0%, #f5f3ef 48%, #fafaf8 100%);
+  --site-body-glow-top: radial-gradient(1100px 480px at 50% -100px, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
+  --site-body-glow-mid: radial-gradient(880px 380px at 82% 42%, rgba(120, 105, 80, 0.045) 0%, rgba(120, 105, 80, 0) 65%);
+  --site-body-glow-low: radial-gradient(720px 320px at 18% 76%, rgba(100, 90, 72, 0.035) 0%, rgba(100, 90, 72, 0) 62%);
 }
 
 html {
@@ -11,9 +18,13 @@ html {
 body {
   margin: 0;
   padding-top: 56px;
-  background-image: var(--site-body-pattern);
-  background-repeat: repeat-y;
-  background-size: contain;
+  background-color: #f7f5f1;
+  background-image: var(--site-body-pattern), var(--site-body-motif), var(--site-body-glow-top),
+    var(--site-body-glow-mid), var(--site-body-glow-low), var(--site-body-base);
+  background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: auto, 112px 112px, cover, cover, cover, cover;
+  background-position: center top, center top, center top, center top, center top, center top;
+  background-attachment: scroll, scroll, fixed, fixed, fixed, fixed;
   color: #1e1e1e;
   font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
   letter-spacing: 0.05rem;
@@ -75,6 +86,14 @@ h3.section-dancing,
   font-size: 30px;
 }
 
+.closing-block h4 {
+  margin-bottom: 0.2rem;
+}
+
+.closing-names {
+  margin: 0;
+}
+
 h4,
 h5,
 h6,
@@ -134,6 +153,11 @@ p {
   filter: saturate(2);
   opacity: var(--vt-img-opacity, 0.5);
   z-index: 0;
+}
+
+/* Hero uses illustrated/photo portrait — keep saturation closer to source art */
+.vt-wrap--hero .vt-bg {
+  filter: saturate(1.12);
 }
 
 /* Hero photo: <img> + object-fit; object-position controls which part of the image fills the strip. */
@@ -219,6 +243,19 @@ p {
   font-weight: 500;
 }
 
+.fun-dress-note {
+  font-family: 'Dancing Script', cursive;
+  max-width: 34rem;
+  margin: 1.25rem auto 0;
+  font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+  line-height: 1.45;
+  font-weight: 500;
+  font-style: normal;
+  text-wrap: balance;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.55), 0 0 0.15em rgba(0, 0, 0, 0.35);
+  opacity: 0.95;
+}
+
 /* Timer — from reference */
 .timer-container {
   width: 100%;
@@ -274,22 +311,12 @@ p {
   font-style: normal;
 }
 
-.music-wrap img.music {
-  width: 70px;
-  height: auto;
-}
-
-.music-wrap audio {
-  max-width: 100%;
-  margin-top: 0.5rem;
-}
-
 /* Blog row — frosted card; wide screens offset like reference */
 .blog-container .main-row {
   background-color: hsla(0, 0%, 100%, 0.858);
   border-radius: 0.5rem;
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.05);
-  margin-bottom: 8%;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
   overflow: visible;
 }
 
@@ -301,6 +328,10 @@ p {
   max-width: 85%;
   height: auto;
   object-fit: cover;
+}
+
+.blog-title {
+  text-align: center;
 }
 
 .blog-title > h2 {
@@ -315,9 +346,10 @@ p {
 
 @media (min-width: 1100px) {
   .blog-container .main-row {
-    left: 15%;
     position: relative;
     max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -328,179 +360,55 @@ p {
   white-space: pre-line;
 }
 
-/* Gallery — carousel (fixed viewport, light surface aligned with page) */
-.gallery-section {
-  /* Taller viewport = less “small print” when using contain; tune if needed */
-  --gallery-slide-height: clamp(300px, 56vmin, 580px);
-  --gallery-surface: #faf7f2;
-  --gallery-surface-edge: rgba(46, 44, 40, 0.06);
-  width: 100%;
+.invite-godparents-wrap {
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.gallery-section > .container.text-center {
-  margin-bottom: 1.5rem;
+.invite-godparents {
+  padding: clamp(1.35rem, 3.5vw, 1.85rem) clamp(1rem, 3vw, 1.75rem);
+  background-color: hsla(38, 45%, 97%, 0.95);
+  background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.55) 0%, transparent 100%);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(94, 78, 17, 0.1);
 }
 
-.gallery-title {
-  color: #4caf50;
+@media (min-width: 1100px) {
+  .invite-godparents-wrap .invite-godparents {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.invite-godparents-label {
+  font-size: 1.08rem;
+  font-style: normal;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.invite-godparents-names {
   font-family: 'Dancing Script', cursive;
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-size: clamp(2.05rem, 4.5vw, 2.45rem);
+  font-style: normal;
+  line-height: 1.2;
 }
 
-.gallery-carousel-outer {
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.gallery-carousel {
-  position: relative;
-}
-
-.gallery-carousel-inner {
-  overflow: hidden;
-  height: var(--gallery-slide-height);
-  background: var(--gallery-surface);
-  border: 1px solid var(--gallery-surface-edge);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.7) inset,
-    0 8px 32px rgba(46, 44, 40, 0.06);
-}
-
-.gallery-carousel-inner .carousel-item {
-  height: var(--gallery-slide-height);
-}
-
-.gallery-carousel-frame {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  padding: clamp(0.35rem, 1.5vw, 0.75rem);
-  cursor: zoom-in;
-  overflow: hidden;
-  border-radius: inherit;
-  box-sizing: border-box;
-}
-
-.gallery-carousel-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  margin: 0;
-  border-radius: 0;
-  transition: transform 0.4s ease;
-}
-
-.gallery-carousel-frame:hover .gallery-carousel-img {
-  transform: scale(1.015);
-}
-
-.gallery-carousel .carousel-indicators {
-  margin-bottom: 0.65rem;
-}
-
-.gallery-carousel .carousel-indicators [type='button'] {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: rgba(46, 44, 40, 0.22);
-  border: none;
-  margin: 0 5px;
-}
-
-.gallery-carousel .carousel-indicators .active {
-  background-color: #4caf50;
-}
-
-.gallery-carousel .carousel-control-prev,
-.gallery-carousel .carousel-control-next {
-  width: 3rem;
-  min-width: 3rem;
-  opacity: 1;
-}
-
-.gallery-carousel .carousel-control-prev-icon,
-.gallery-carousel .carousel-control-next-icon {
-  width: 2.25rem;
-  height: 2.25rem;
-  filter: invert(32%) sepia(8%) saturate(800%) hue-rotate(349deg) brightness(95%);
-}
-
-.gallery-carousel .gallery-pic:focus {
-  outline: none;
-}
-
-.gallery-carousel .gallery-pic:focus-visible {
-  outline: 3px solid rgba(76, 175, 80, 0.9);
-  outline-offset: 2px;
-  border-radius: 0.25rem;
-}
-
-/* Lightbox */
-.model {
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.9);
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  left: 0;
-  opacity: 0;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  transform: scale(0);
-  transition:
-    opacity 0.4s ease,
-    visibility 0.4s ease,
-    transform 0.5s ease-in-out;
-  visibility: hidden;
-  width: 100%;
-  z-index: 2000;
-  padding: 2rem;
-}
-
-.model.open {
-  opacity: 1;
-  transform: scale(1);
-  visibility: visible;
-}
-
-.model img {
-  max-width: 100%;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 4px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
-  animation: galleryLightboxIn 0.28s ease-out;
-}
-
-@keyframes galleryLightboxIn {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.model-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 2.5rem;
-  line-height: 1;
-  text-decoration: none;
-  z-index: 2001;
+.invite-godparents-role {
+  font-size: 1.05rem;
+  font-style: italic;
 }
 
 /* Venue */
+#geolocal {
+  padding-top: 1.5rem !important;
+}
+
+#venue-title {
+  margin-top: 1.5rem !important;
+}
+
 .section-dancing {
   font-family: 'Dancing Script', cursive;
   font-size: 40px;
@@ -540,9 +448,152 @@ p {
   color: #fff;
 }
 
+.form {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.rsvp-card {
+  max-width: 55rem;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(94, 78, 17, 0.12);
+  border-radius: 1.25rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(250, 247, 242, 0.96)),
+    #fff;
+  box-shadow:
+    0 1.25rem 3rem rgba(40, 34, 22, 0.11),
+    0 0 0 1px rgba(255, 255, 255, 0.82) inset;
+}
+
 .rsvp-card-header {
+  padding: 2rem 1.5rem 1.4rem;
+  background:
+    radial-gradient(460px 180px at 50% 0%, rgba(240, 219, 176, 0.42), transparent 70%),
+    linear-gradient(180deg, #fbf8f1 0%, #f4eee3 100%);
+  border-bottom: 1px solid rgba(94, 78, 17, 0.12);
+  color: #28231b;
+  text-align: center;
+}
+
+.rsvp-title {
+  margin: 0 0 0.65rem;
+  color: #1f1b15;
+  text-shadow: none;
+}
+
+.rsvp-deadline {
+  max-width: 28rem;
+  margin: 0 auto;
   white-space: pre-line;
-  font-style: italic;
+  color: #4c4438;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-style: normal;
+  line-height: 1.55;
+  letter-spacing: 0.035em;
+}
+
+.rsvp-card .card-body {
+  padding: clamp(1.35rem, 3.5vw, 2.25rem);
+}
+
+.rsvp-card .mb-3 {
+  margin-bottom: 1.2rem !important;
+}
+
+.rsvp-card hr {
+  margin: 1.45rem 0;
+  border-color: rgba(94, 78, 17, 0.16);
+  opacity: 1;
+}
+
+.rsvp-card .form-label,
+.rsvp-card .col-form-label {
+  margin-bottom: 0.45rem;
+  color: #2e281f;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+}
+
+.rsvp-card legend.form-label {
+  margin-bottom: 0.85rem;
+  font-size: clamp(1.25rem, 3vw, 1.55rem);
+  font-weight: 500;
+}
+
+.rsvp-card .form-control {
+  min-height: 3rem;
+  border: 1px solid rgba(94, 78, 17, 0.22);
+  border-radius: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.88);
+  color: #1e1e1e;
+  box-shadow: 0 0.35rem 1rem rgba(40, 34, 22, 0.04) inset;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.rsvp-card textarea.form-control {
+  min-height: 7rem;
+}
+
+.rsvp-card .form-control:focus {
+  border-color: rgba(94, 78, 17, 0.65);
+  background-color: #fff;
+  box-shadow:
+    0 0 0 0.2rem rgba(94, 78, 17, 0.1),
+    0 0.35rem 1rem rgba(40, 34, 22, 0.03) inset;
+}
+
+.rsvp-card .form-check {
+  display: flex;
+  align-items: center;
+  min-height: 2.7rem;
+  padding: 0.55rem 0.85rem 0.55rem 2.75rem;
+  margin-bottom: 0.55rem;
+  border: 1px solid rgba(94, 78, 17, 0.12);
+  border-radius: 0.85rem;
+  background-color: rgba(255, 255, 255, 0.58);
+}
+
+.rsvp-card .form-check-input {
+  margin-left: -1.75rem;
+  margin-right: 0.75rem;
+  border-color: rgba(94, 78, 17, 0.45);
+}
+
+.rsvp-card .form-check-input:checked {
+  background-color: #5e4e11;
+  border-color: #5e4e11;
+}
+
+.rsvp-card .guest-counts {
+  border-color: rgba(94, 78, 17, 0.2) !important;
+  background-color: rgba(248, 244, 236, 0.72);
+}
+
+.btn-submit {
+  min-height: 3rem;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  box-shadow: 0 0.65rem 1.35rem rgba(94, 78, 17, 0.18);
+}
+
+.rsvp-card .card-footer {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid rgba(94, 78, 17, 0.12);
+  background-color: rgba(246, 241, 232, 0.68);
+  color: #5b6470 !important;
+  line-height: 1.6;
+}
+
+.rsvp-card .card-footer a {
+  color: #5e4e11 !important;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
 .form-status--error {
@@ -587,16 +638,4 @@ p {
     transition: none;
   }
 
-  .gallery-carousel-frame,
-  .gallery-carousel-img {
-    transition: none;
-  }
-
-  .gallery-carousel-frame:hover .gallery-carousel-img {
-    transform: none;
-  }
-
-  .model img {
-    animation: none;
-  }
 }

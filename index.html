@@ -45,9 +45,6 @@
               <a class="nav-link" href="#blog">Noi</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#gallery">Gallery</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#geolocal">Unde și Când?</a>
             </li>
             <li class="nav-item">
@@ -86,7 +83,7 @@
         </div>
       </section>
 
-      <!-- Quote + countdown + music -->
+      <!-- Quote + countdown -->
       <div class="text-center mt-4 pt-4 px-3 intro-block">
         <blockquote class="intro-quote mb-4" data-bind="introQuote"></blockquote>
 
@@ -117,17 +114,6 @@
         </section>
         <p class="countdown-done hidden my-4" id="countdown-done" data-bind="countdownDoneMessage"></p>
 
-        <span class="d-inline-flex flex-column align-items-center music-wrap">
-          <img
-            class="music animate__animated animate__pulse animate__delay-4s animate__infinite"
-            id="music-icon"
-            src=""
-            alt=""
-            width="70"
-            height="70"
-          />
-          <audio id="bg-audio" controls loop preload="metadata"></audio>
-        </span>
       </div>
 
       <!-- Invitation blog -->
@@ -140,7 +126,7 @@
               </div>
             </div>
             <div class="col-lg-8 col-md-12">
-              <div class="blog-title mt-lg-5 mt-md-3 mt-4 px-2 px-lg-3">
+              <div class="blog-title px-2 px-lg-3 py-4">
                 <h2 class="text-center p-2" data-bind="inviteTitle"></h2>
                 <h4 class="text-center px-2 invite-body" data-bind="inviteBody"></h4>
               </div>
@@ -149,27 +135,13 @@
         </div>
       </section>
 
-      <!-- Gallery carousel -->
-      <section id="gallery" class="gallery-section mt-5 mb-5 reveal" aria-labelledby="gallery-heading">
-        <div class="container text-center mb-3">
-          <h1 id="gallery-heading" class="mb-0 gallery-title" data-bind="galleryHeading"></h1>
+      <div class="container px-3 reveal invite-godparents-wrap">
+        <div class="text-center invite-godparents">
+          <p class="invite-godparents-label mb-2" data-bind="inviteGodparentsLabel"></p>
+          <p class="invite-godparents-names mb-1" data-bind="inviteGodparentsNames"></p>
+          <p class="invite-godparents-role mb-0 text-muted" data-bind="inviteGodparentsRole"></p>
         </div>
-        <div
-          class="model"
-          id="gallery-lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Imagine mărită"
-        >
-          <button type="button" class="model-close btn btn-link text-white" id="lightbox-close" aria-label="Închide">
-            &times;
-          </button>
-          <img id="lightbox-img" src="" alt="" />
-        </div>
-        <div class="container-fluid px-3 px-lg-5 gallery-carousel-outer">
-          <div id="gallery-root"></div>
-        </div>
-      </section>
+      </div>
 
       <!-- Unde și când -->
       <section id="geolocal" class="card_local py-lg-5 container reveal" aria-labelledby="venue-title">
@@ -202,22 +174,25 @@
       </section>
 
       <!-- Fun + RSVP intro -->
-      <section class="vt-wrap vt-wrap--fun reveal" aria-labelledby="fun-line">
+      <section class="vt-wrap vt-wrap--fun reveal" aria-labelledby="fun-line" aria-describedby="fun-dress-note">
         <div class="vt-bg" id="fun-vt-bg" aria-hidden="true"></div>
         <div class="vt-overlay" id="fun-vt-overlay" aria-hidden="true"></div>
         <div class="mask" aria-hidden="true"></div>
         <div class="vt-content">
           <div class="container text-center fun-inner px-3 py-4">
             <h1 class="text-white fun-title" id="fun-line" data-bind="funReminder"></h1>
+            <p class="text-white fun-dress-note" id="fun-dress-note" data-bind="funDressCodeNote"></p>
           </div>
         </div>
       </section>
 
       <!-- Form -->
-      <section id="forms" class="form pb-5 reveal" aria-labelledby="rsvp-heading">
-        <h2 id="rsvp-heading" class="text-center mt-5 section-dancing" data-bind="rsvpTitle"></h2>
-        <div class="card text-center container my-4" style="max-width: 55rem">
-          <div class="card-header rsvp-card-header" data-bind="rsvpDeadlineText"></div>
+      <section id="forms" class="form pt-5 pb-3 reveal" aria-labelledby="rsvp-heading">
+        <div class="card text-center container my-4 rsvp-card">
+          <div class="rsvp-card-header">
+            <h2 id="rsvp-heading" class="section-dancing rsvp-title" data-bind="rsvpTitle"></h2>
+            <p class="rsvp-deadline" data-bind="rsvpDeadlineText"></p>
+          </div>
           <div class="card-body text-start">
             <form id="rsvp-form" novalidate>
               <div class="mb-3">
@@ -242,7 +217,6 @@
                   autocomplete="tel"
                 />
               </div>
-              <hr />
               <fieldset class="mb-3">
                 <legend class="form-label" data-bind="labelPresence"></legend>
                 <div class="form-check mb-2">
@@ -288,7 +262,6 @@
                 <label class="form-label" for="message"><span data-bind="labelMessage"></span></label>
                 <textarea class="form-control" id="message" name="mesaj" rows="4"></textarea>
               </div>
-              <hr />
               <p class="form-status small mb-2" id="form-status" role="status" aria-live="polite"></p>
               <button type="submit" class="btn btn-primary w-100 btn-submit" data-bind="submitLabel"></button>
             </form>
@@ -304,12 +277,10 @@
           </div>
         </div>
 
-        <div class="text-center mt-5 mb-4">
+        <div class="text-center mt-4 mb-1 closing-block">
           <h4 data-bind="closingLine"></h4>
-          <h3 class="section-dancing closing-names mt-2">
+          <h3 class="section-dancing closing-names">
             <span data-bind="mireasa"></span> &amp; <span data-bind="mire"></span>
-            <br />
-            <img id="closing-giphy" class="mt-2" src="" alt="" style="width: 100px" />
           </h3>
         </div>
       </section>

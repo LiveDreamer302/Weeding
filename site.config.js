@@ -7,20 +7,24 @@ export const assetBase = 'https://vasile-carolina.invitatii-web.md';
 export default {
   pageTitle: 'Lidia & Constantin',
 
-  /** Body tiling background (reference global style) */
-  bodyPatternUrl: `${assetBase}/static/media/fbwm.7d3b72d18505b4a8d9c5.png`,
+  /** Optional extra tiling image on top of the built-in wedding motif (leave empty to use CSS rings only) */
+  bodyPatternUrl: '',
 
   /** Hero: local file in /public (same image for desktop and mobile) */
   heroImageDesktop: '/hero-main.png',
   heroImageMobile: '/hero-main.png',
   /**
-   * Hero crop (object-position vertical %): tune until faces sit in frame — too low % = faces near
-   * bottom of hero; too high % = heads clipped off top. ~28–34% is often the range for portrait+wide hero.
+   * Hero crop: vertical % aligns a point on the image with the same % on the box. Too high (e.g. 42%)
+   * shifts the crop down the artwork and can clip faces at the top; too low (e.g. 14%) can clip at the
+   * bottom. ~26–32% is a good band for this portrait; nudge by 2–3% if needed.
    */
-  heroObjectPositionDesktop: 'center 30%',
+  heroObjectPositionDesktop: 'center 28%',
   heroObjectPositionMobile: 'center 28%',
   heroHeight: '600px',
-  heroImageOpacity: 0.5,
+  /** Taller desktop hero = less vertical crop (more of the portrait height visible). */
+  heroHeightDesktop: 'min(72vh, 760px)',
+  /** Slightly higher so illustrated hero reads through overlay + mask */
+  heroImageOpacity: 0.56,
 
   mire: 'Constantin',
   mireasa: 'Lidia',
@@ -34,10 +38,6 @@ export default {
   introQuote:
     'Două suflete nu se leagă prin jurăminte rostite, ci prin tăceri împărtășite și prin felul în care inimile lor învață să bată în același ritm.',
 
-  musicIconUrl: `${assetBase}/static/media/music.755b5979da064d0eb657.png`,
-  audioUrl: `${assetBase}/static/media/eds.f19d21a6ac727b919f2e.mp3`,
-  giphyUrl: `${assetBase}/static/media/giphy.3c7f2afaebcf8de7c9f9.gif`,
-
   countdownDays: 'zile',
   countdownHours: 'ore',
   countdownMinutes: 'minute',
@@ -45,7 +45,7 @@ export default {
   countdownDoneMessage: 'A sosit ziua cea mare! Cu drag, vă așteptăm.',
 
   inviteTitle: 'VĂ INVITĂM LA NUNTA NOASTRĂ!',
-  inviteImageUrl: `${assetBase}/static/media/3.1c93011e819353de9504.jpg`,
+  inviteImageUrl: '/gallery-1.png',
   inviteBody: `Într-o atmosferă plină de iubire, speranță și promisiuni,
 vom uni destinele noastre pentru a păși împreună pe drumul unei povești scrise în doi.
 
@@ -54,14 +54,9 @@ Vă invităm să ne fiți alături într-un moment ce marchează începutul unui
 Prezența dumneavoastră va adăuga strălucire și căldură acestei zile de neuitat,
 transformând-o într-o amintire prețioasă pentru sufletele noastre. 💍`,
 
-  galleryHeading: 'Gallery',
-  galleryImages: [
-    { src: '/gallery-2.png', alt: 'Galerie' },
-    { src: '/gallery-3.png', alt: 'Galerie' },
-    { src: '/gallery-4.png', alt: 'Galerie' },
-    { src: '/gallery-5.png', alt: 'Galerie' },
-    { src: '/gallery-1.png', alt: 'Galerie' },
-  ],
+  inviteGodparentsLabel: 'Îndrumătorii spirituali',
+  inviteGodparentsNames: 'Carolina & Vasile',
+  inviteGodparentsRole: '(Nașii)',
 
   venueSectionTitle: 'Unde și Când?',
   venueEventLabel: 'Locația Evenimentului',
@@ -81,6 +76,8 @@ transformând-o într-o amintire prețioasă pentru sufletele noastre. 💍`,
   funImageOpacity: 0.2,
   funReminder: `Ne-ar bucura confirmarea dumneavoastră,
 care ne va ajuta să pregătim fiecare detaliu cu grijă și eleganță.`,
+  funDressCodeNote:
+    'Cu delicatețe, vă rugăm să evitați ținutele în alb sau foarte deschise la culoare — în această zi specială ne bucurăm să păstrăm nuanțele de alb pentru mireasă.',
 
   rsvpTitle: 'Confirmare',
   rsvpDeadlineText:
@@ -98,16 +95,12 @@ care ne va ajuta să pregătim fiecare detaliu cu grijă și eleganță.`,
 
   footerAnticipation:
     'Abia așteptăm să vă vedem! Dacă aveți orice altă întrebare, vă rugăm să ne contactați sau scrieți-ne un mesaj:',
-  footerPhoneDisplay: '+37362089265',
-  footerPhoneTel: '+37362089265',
+  footerPhoneDisplay: '+491746206192',
+  footerPhoneTel: '+491746206192',
   footerLinks: [
-    { label: 'Phone', href: 'tel:+37362089265' },
-    { label: 'Viber', href: 'viber://chat?number=%2B37362089265' },
-    { label: 'WhatsApp', href: 'https://wa.me/+37362089265' },
-    {
-      label: 'Messenger',
-      href: 'https://www.messenger.com/t/carolina.coronciuc.9',
-    },
+    { label: 'Phone', href: 'tel:+491746206192' },
+    { label: 'Viber', href: 'viber://chat?number=%2B491746206192' },
+    { label: 'WhatsApp', href: 'https://wa.me/+491746206192' },
   ],
 
   closingLine: 'Vă așteptăm cu drag!',
