@@ -81,7 +81,7 @@ function applyVisualConfig() {
 
   const inviteImg = document.getElementById('invite-side-img');
   if (inviteImg && siteConfig.inviteImageUrl) {
-    inviteImg.src = siteConfig.inviteImageUrl;
+    inviteImg.src = publicAssetUrl(siteConfig.inviteImageUrl);
     inviteImg.alt = 'Invitație';
   }
 
