@@ -105,5 +105,5 @@ care ne va ajuta să pregătim fiecare detaliu cu grijă și eleganță.`,
 
   closingLine: 'Vă așteptăm cu drag!',
 
-  formspreeFormId: 'mnjlgjey',
+  formspreeFormId: 'mvzlzvnv',
 };
